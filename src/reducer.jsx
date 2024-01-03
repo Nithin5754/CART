@@ -56,7 +56,24 @@ if(action.type==='FETCHED_DATA'){
 
     return {...state,cart:action.payload,isLoading:false}
   .3
-  
+
+}
+if(action.type==='TOGGLE_BTN'){
+    let updateCart=state.cart.map((car)=>{
+ 
+      if(car.id===action.payload.id){
+        console.log(action.payload.id,"id found");
+        if(action.payload.type==='inc'){
+          console.log("inc");
+          return {...car,amount:car.amount+1}
+        }else if(action.payload.type==='desc'){
+          console.log("desc");
+          return {...car,amount:car.amount-1}
+        }
+      }
+      return car
+    }).filter((cartItem)=>cartItem.amount !==0)
+    return {...state,cart:updateCart}
 }
 
   return state

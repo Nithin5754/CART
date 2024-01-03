@@ -33,6 +33,9 @@ const increase=(id)=>{
 const decrease=(id)=>{
   dispatch({type:'DECREASE',payload:id})
 }
+const toggleBtn=(id,type)=>{
+  dispatch({type:'TOGGLE_BTN',payload:{id,type}})
+}
 
 const fetchData=async()=>{
   dispatch({type:'LOADING'})
@@ -56,7 +59,7 @@ dispatch({type:'TOTAL_CART'})
   return (
     <AppContext.Provider
       value={{
-       ...state,clearCart,removeSingleItem,decrease,increase
+       ...state,clearCart,removeSingleItem,decrease,increase,toggleBtn
       }}
     >
       {children}
